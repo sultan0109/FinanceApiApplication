@@ -3,7 +3,7 @@
 ## Запуск проекта:
 
 1. Клонируйте репозиторий:
-    git clone <repository_url>
+    git clone https://github.com/sultan0109/FinanceApiApplication
     
 2. Сборка проекта:
     mvn clean install
