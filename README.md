@@ -11,6 +11,9 @@
 3. Запуск проекта:
     mvn spring-boot:run
 
+4.Запускай датаБасе
+docker run -d --name my_postgres -e POSTGRES_USER=user -e POSTGRES_PASSWORD=user -e POSTGRES_DB=fin_db -p 5432:5432 postgres   
+
 ## Запуск с Docker:
 
 1. Соберите Docker образ:
