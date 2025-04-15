@@ -24,10 +24,12 @@ public class TransactionServiceImpl implements TransactionService {
     private final UserRepository userRepo;
     private final TransactionRepository transactionRepository;
     private final TransactionMapper mapper;
+    private final TransactionLogService logService; // async логирование
 
-    @Transactional // если на база стоит рид коммитет
+    @Transactional
     public TransactionResponseDto create(TransactionDto request) {
-        User user = userRepo.findById(request.getUserId())
+
+        User user = userRepo.findByIdForUpdate(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         BigDecimal amount = request.getAmount();
@@ -52,16 +54,19 @@ public class TransactionServiceImpl implements TransactionService {
 
         Transaction savedTransaction = transactionRepository.save(transaction);
 
+
+        logService.logTransactionAsync(savedTransaction);
+
+        // Маппинг вручную или через маппер
         TransactionResponseDto responseDto = new TransactionResponseDto();
         responseDto.setId(savedTransaction.getId());
-        responseDto.setUserId(savedTransaction.getUser().getId());
+        responseDto.setUserId(user.getId());
         responseDto.setAmount(savedTransaction.getAmount());
         responseDto.setType(savedTransaction.getType());
         responseDto.setCreatedAt(savedTransaction.getCreatedAt());
         responseDto.setDescription("Transaction " + savedTransaction.getType().name());
 
         return responseDto;
-
     }
 
     public List<TransactionResponseDto> getAll() {
