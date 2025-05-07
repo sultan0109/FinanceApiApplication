@@ -1,8 +1,10 @@
 package com.example.Finance_api.entity;
 
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
