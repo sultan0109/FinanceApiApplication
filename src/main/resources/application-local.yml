@@ -1,9 +1,9 @@
 server:
-  port: ${APP_PORT:8181}
+  port: ${APP_PORT:9191}
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/finance_db
+    url: jdbc:postgresql://localhost:5432/sultandb
     username: user
     password: user
     driver-class-name: org.postgresql.Driver

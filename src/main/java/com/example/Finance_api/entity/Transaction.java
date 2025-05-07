@@ -1,8 +1,7 @@
 package com.example.Finance_api.entity;
-
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -16,7 +15,7 @@ import java.time.LocalDateTime;
 public class Transaction extends BaseEntity {
 
     @ManyToOne
-    private User user;
+    private UserInfo user;
 
     private BigDecimal amount;
 

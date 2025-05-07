@@ -5,11 +5,10 @@ import com.example.Finance_api.dto.TransactionMapper;
 import com.example.Finance_api.dto.TransactionResponseDto;
 import com.example.Finance_api.entity.Transaction;
 import com.example.Finance_api.entity.TransactionType;
-import com.example.Finance_api.entity.User;
+import com.example.Finance_api.entity.UserInfo;
 import com.example.Finance_api.repo.TransactionRepository;
 import com.example.Finance_api.repo.UserRepository;
 import com.example.Finance_api.service.TransactionService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +25,10 @@ public class TransactionServiceImpl implements TransactionService {
     private final TransactionMapper mapper;
     private final TransactionLogService logService; // async логирование
 
-    @Transactional
+    @org.springframework.transaction.annotation.Transactional
     public TransactionResponseDto create(TransactionDto request) {
 
-        User user = userRepo.findByIdForUpdate(request.getUserId())
+        UserInfo user = userRepo.findByIdForUpdate(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         BigDecimal amount = request.getAmount();

@@ -1,7 +1,7 @@
 package com.example.Finance_api.dto;
 
 import com.example.Finance_api.entity.Transaction;
-import com.example.Finance_api.entity.User;
+import com.example.Finance_api.entity.UserInfo;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Component
 public class TransactionMapper {
 
-    public Transaction toEntity(TransactionDto dto, User user) {
+    public Transaction toEntity(TransactionDto dto, UserInfo user) {
         return Transaction.builder()
                 .user(user)
                 .amount(dto.getAmount())

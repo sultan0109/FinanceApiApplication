@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users",schema = "user")
+@Table(name = "userInfo",schema = "users")
 @Builder
-public class User  extends BaseEntity {
+public class UserInfo extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -26,6 +26,6 @@ public class User  extends BaseEntity {
     private String password;
 
 
-    public User(String username, String password) {
+    public UserInfo(String username, String password) {
     }
 }

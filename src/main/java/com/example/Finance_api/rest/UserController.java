@@ -2,7 +2,7 @@ package com.example.Finance_api.rest;
 
 import com.example.Finance_api.dto.ApiResponse;
 import com.example.Finance_api.dto.UserDto;
-import com.example.Finance_api.entity.User;
+import com.example.Finance_api.entity.UserInfo;
 import com.example.Finance_api.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,17 +21,17 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> all() {
+    public List<UserInfo> all() {
         return userService.getAll();
     }
 
     @GetMapping("/{id}")
-    public User one(@PathVariable Long id) {
+    public UserInfo one(@PathVariable Long id) {
         return userService.get(id);
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable Long id, @RequestBody UserDto dto) {
+    public UserInfo update(@PathVariable Long id, @RequestBody UserDto dto) {
         return userService.update(id, dto);
     }
 }
